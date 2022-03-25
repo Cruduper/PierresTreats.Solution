@@ -33,7 +33,7 @@ namespace PierresTreats.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "CategoryId", "Name");
+    
       return View();
     }
 

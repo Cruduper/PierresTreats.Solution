@@ -33,7 +33,7 @@ namespace PierresTreats.Controllers
 
     public ActionResult Create()
     {
-    
+
       return View();
     }
 
@@ -53,25 +53,15 @@ namespace PierresTreats.Controllers
       return RedirectToAction("Index");
     }
 
-  //   public ActionResult Details(int id)
-  //   {
-  //     var thisRecipe = _db.Recipes
-  //         .Include(recipe => recipe.JoinEntities)
-  //         .ThenInclude(join => join.Category)
-  //         .FirstOrDefault(recipe => recipe.RecipeId == id);
+    public ActionResult Details(int id)
+    {
+      var thisTreat = _db.Treats
+          .Include(je => je.JoinEntities)
+          .ThenInclude(join => join.Flavor)
+          .FirstOrDefault(t => t.TreatId == id);
 
-
-  //     //we want 
-  //     ViewBag.recIngreds = _db.RecipeIngredient
-  //                           .Include(ing => ing.Ingredient)
-  //                           .ToList();
-                          
-  //     // ViewBag.amounts = _db.RecipeIngredient
-  //     //                     .Where( recIng = recIng.RecipeId == id)
-  //     //                     .ToList();
-
-  //     return View(thisRecipe);
-  //   }
+      return View(thisTreat);
+    }
 
   //   public ActionResult Edit(int id)
   //   {

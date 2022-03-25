@@ -8,13 +8,13 @@ namespace PierresTreats.Models
 
     public Flavor()
     {
-      this.JoinEntities = new HashSet<RecipeIngredient>();
+      this.JoinEntities = new HashSet<FlavorTreat>();
     }
     public int FlavorId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
 
-    public virtual ICollection<RecipeIngredient> JoinEntities { get; set;}
+    public virtual ICollection<FlavorTreat> JoinEntities { get; set;}
   }
 
 }

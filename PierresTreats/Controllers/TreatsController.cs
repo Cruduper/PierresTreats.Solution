@@ -31,27 +31,27 @@ namespace PierresTreats.Controllers
       return View(userTreats);
     }
 
-  //   public ActionResult Create()
-  //   {
-  //     ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-  //     return View();
-  //   }
+    public ActionResult Create()
+    {
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "CategoryId", "Name");
+      return View();
+    }
 
-  //   [HttpPost]
-  //   public async Task<ActionResult> Create(Recipe recipe, int CategoryId)
-  //   {
-  //     var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-  //     var currentUser = await _userManager.FindByIdAsync(userId);
-  //     recipe.User = currentUser;
-  //     _db.Recipes.Add(recipe);
-  //     _db.SaveChanges();
-  //     if (CategoryId != 0)
-  //     {
-  //         _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
-  //     }
-  //     _db.SaveChanges();
-  //     return RedirectToAction("Index");
-  //   }
+    [HttpPost]
+    public async Task<ActionResult> Create(Treat treat, int FlavorId)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      treat.User = currentUser;
+      _db.Treats.Add(treat);
+      _db.SaveChanges();
+      if (FlavorId != 0)
+      {
+        _db.FlavorTreats.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
   //   public ActionResult Details(int id)
   //   {

@@ -27,4 +27,6 @@
   }
 </ul>
 
+<div>@Html.ActionLink("Edit " + $"{@Model.Name}", "Edit", new {id = @Model.FlavorId})</div>
+<div>@Html.ActionLink("Delete " + $"{@Model.Name}", "Delete", new {id = @Model.FlavorId})</div>
 <div>@Html.ActionLink("Back to Flavors list", "Index", "Flavors")</div>

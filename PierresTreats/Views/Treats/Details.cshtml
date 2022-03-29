@@ -7,7 +7,8 @@
 
 <ul>
   <li>Treat ID: @Model.TreatId</li>
-  <li>Treat: @Model.Name</li>
+  <li>Name: @Model.Name</li>
+  <li>Price: @Model.Price</li>
   <li>Description: @Model.Description</li>
 </ul>
 
@@ -27,6 +28,8 @@
   }
 </ul>
 
+<div>@Html.ActionLink("Edit " + $"{@Model.Name}", "Edit", new {id = @Model.TreatId})</div>
+<div>@Html.ActionLink("Delete " + $"{@Model.Name}", "Delete", new {id = @Model.TreatId})</div>
 <div>@Html.ActionLink("Add a new Flavor to " + $"{@Model.Name}", "AddFlavor", new {id = @Model.TreatId})</div>
 <div>@Html.ActionLink("Remove a Flavor from " + $"{@Model.Name}", "RemoveFlavor", new {id = @Model.TreatId})</div>
 <div>@Html.ActionLink("Back to Treats list", "Index", "Treats")</div>

@@ -63,6 +63,45 @@ namespace PierresTreats.Controllers
       return View(thisTreat);
     }
 
+    public ActionResult Edit(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(m => m.TreatId == id);
+
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      if (treat != null)
+      {
+       _db.Entry(treat).State = EntityState.Modified;
+       _db.SaveChanges();
+      }
+
+      return RedirectToAction("Details", new {id = treat.TreatId});
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(m => m.TreatId == id);
+
+      return View(thisTreat);
+    }
+
+
+    [HttpPost]
+    public ActionResult Delete(Treat treat)
+    {
+      if (treat != null)
+      {
+        _db.Treats.Remove(treat);
+        _db.SaveChanges();
+      }
+
+      return RedirectToAction("Index");
+    }
+
     public ActionResult AddFlavor(int id)
     {
       Treat thisTreat = _db.Treats.FirstOrDefault(i => i.TreatId == id);
@@ -85,6 +124,39 @@ namespace PierresTreats.Controllers
 
       return RedirectToAction("Details", new {id = treat.TreatId});
     }
+
+  
+    public ActionResult RemoveFlavor(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(i => i.TreatId == id);
+      List<Flavor> flavSelect = _db.FlavorTreats
+                        .Where(m => m.TreatId == id)
+                        .Select(n => n.Flavor)
+                        .ToList();
+
+      ViewBag.FlavorId = new SelectList(flavSelect, "FlavorId", "Name");
+
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult RemoveFlavor(Treat treat, int FlavorId)
+    {
+      FlavorTreat flavToRemove = _db.FlavorTreats.FirstOrDefault( flavT => flavT.FlavorId == FlavorId && flavT.TreatId == treat.TreatId);
+
+      if (FlavorId != 0)
+      {
+        if(flavToRemove != null )
+        {
+          _db.FlavorTreats.Remove(flavToRemove);
+          _db.SaveChanges();
+        }
+      }
+
+      return RedirectToAction("Details", new {id = treat.TreatId});
+    }
+
+
 
   //   public ActionResult Edit(int id)
   //   {

@@ -1,11 +1,11 @@
-// using Microsoft.AspNetCore.Authorization;
-// using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PierresTreats.Models;
-// using System.Threading.Tasks;
-// using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,9 +14,11 @@ namespace PierresTreats.Controllers
   public class FlavorsController : Controller
   {
     private readonly PierresTreatsContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(PierresTreatsContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierresTreatsContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -25,11 +27,13 @@ namespace PierresTreats.Controllers
       return View(_db.Flavors.ToList());
     }
 
+    [Authorize]
     public ActionResult Create()
     {
       return View();
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult Create(Flavor flavor)
     {
@@ -38,6 +42,7 @@ namespace PierresTreats.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize]
     public ActionResult Edit(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(m => m.FlavorId == id);
@@ -45,6 +50,7 @@ namespace PierresTreats.Controllers
       return View(thisFlavor);
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
@@ -66,6 +72,7 @@ namespace PierresTreats.Controllers
       return View(model);
     }
 
+    [Authorize]
     public ActionResult Delete(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(m => m.FlavorId == id);
@@ -73,7 +80,7 @@ namespace PierresTreats.Controllers
       return View(thisFlavor);
     }
 
-
+    [Authorize]
     [HttpPost]
     public ActionResult Delete(Flavor flavor)
     {

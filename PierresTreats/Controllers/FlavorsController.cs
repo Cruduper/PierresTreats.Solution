@@ -38,6 +38,25 @@ namespace PierresTreats.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Edit(int id)
+    {
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(m => m.FlavorId == id);
+
+      return View(thisFlavor);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Flavor flavor)
+    {
+      if (flavor != null)
+      {
+        _db.Entry(flavor).State = EntityState.Modified;
+        _db.SaveChanges();
+      }
+
+      return RedirectToAction("Details", new {id = flavor.FlavorId});
+    }
+
      public ActionResult Details(int id)
     {
       Flavor model = _db.Flavors
@@ -47,6 +66,25 @@ namespace PierresTreats.Controllers
       return View(model);
     }
 
+    public ActionResult Delete(int id)
+    {
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(m => m.FlavorId == id);
+
+      return View(thisFlavor);
+    }
+
+
+    [HttpPost]
+    public ActionResult Delete(Flavor flavor)
+    {
+      if (flavor != null)
+      {
+        _db.Flavors.Remove(flavor);
+        _db.SaveChanges();
+      }
+
+      return RedirectToAction("Index");
+    }
 
   }
 }

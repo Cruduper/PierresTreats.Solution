@@ -66,8 +66,8 @@ $ touch appsettings.json
 
 #### _Using dotnet ef tool to create migrations:_
 
-* _Navigate to the inside the program folder of the repo, the one that holds the your Program.cs file (named PierresTreats in this repo)_   
-* _type in ```$ dotnet tool install --global dotnet-ef --version 5.0.1``` to install dotnet ef tool_    
+* _type in ```$ dotnet tool install --global dotnet-ef --version 5.0.1``` to install dotnet ef tool_ 
+* _Navigate to the inside the program folder of the repo, the one that holds the your Program.cs file (named PierresTreats in this repo)_      
 * _Then, while still inside that same program folder in terminal, use command ```$ dotnet ef database update```_    
 * _Following these steps should create a migrations folder in your project, and create a new schema inside of MySQL with the name "eric_crudup" (which comes from the appsettings.json file your created) that contains all the tables for the project_      
 * _More details can be found [HERE](https://www.learnhowtoprogram.com/c-and-net/many-to-many-relationships/code-first-development-and-migrations)_
@@ -79,9 +79,10 @@ $ touch appsettings.json
 * _type in ```$ dotnet run``` command_
 * _get awesome_
 
-## Known Bugs and issues
+## Known Bugs and/or Issues
 
 * _No known bugs_
+* _Issue #1: Delete routes in Treat and Flavor controllers use objects as models/arguments, which may be slightly memory inefficient as ints could be used instead with no change in functionality_ 
 
 ## License
 

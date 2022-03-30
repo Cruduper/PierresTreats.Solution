@@ -3,16 +3,23 @@
 }
 
 @using PierresTreats.Models;
+@using System.Security.Claims;
 @model IEnumerable<PierresTreats.Models.Flavor>
 
-<h1>Treats for @User.Identity.Name</h1>
+<h1>Flavors Available</h1>
 
 @if (Model.Any())
 {
   <ul>
     @foreach (Flavor flavor in Model)
     {
-      <li>@Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })</li>
+      <li>
+        @Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })
+
+        @Html.ActionLink("EDIT", "Edit", "Flavors", new {id = flavor.FlavorId}, new { @class = "btn btn-dark btn-sm m-1", @role="button" })  
+        @Html.ActionLink("DELETE", "Delete", "Flavors", new {id = flavor.FlavorId}, new { @class = "btn btn-dark btn-sm my-2", @role="button" })  
+      
+      </li>
     }
   </ul>
 } 

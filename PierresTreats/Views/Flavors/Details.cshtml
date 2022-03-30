@@ -3,15 +3,21 @@
 }
 @using PierresTreats.Models
 
-<h1>Details for @Model.Name:</h1>
+<h1>Details for <span class="redtext">@Model.Name</span>:</h1>
 
 <ul>
   <li>Flavor ID: @Model.FlavorId</li>
   <li>Flavor: @Model.Name</li>
   <li>Description: @Model.Description</li>
+  <li>
+    @Html.ActionLink("EDIT", "Edit", "Flavors", new {id = @Model.FlavorId}, new { @class = "btn btn-dark btn-sm m-1", @role="button" })  
+  </li>
+  <li>
+    @Html.ActionLink("DELETE", "Delete", "Flavors", new {id = @Model.FlavorId}, new { @class = "btn btn-dark btn-sm mb-1", @role="button" })  
+  </li>
 </ul>
 
-<h5>Treats that contain the Flavor @Model.Name</h5>
+<h5>Treats that contain the Flavor <span class="redtext font-weight-bold">@Model.Name</span> </h5>
 <ul>
 
   @if (@Model.JoinEntities.Count == 0)
@@ -27,6 +33,4 @@
   }
 </ul>
 
-<div>@Html.ActionLink("Edit " + $"{@Model.Name}", "Edit", new {id = @Model.FlavorId})</div>
-<div>@Html.ActionLink("Delete " + $"{@Model.Name}", "Delete", new {id = @Model.FlavorId})</div>
 <div>@Html.ActionLink("Back to Flavors list", "Index", "Flavors")</div>

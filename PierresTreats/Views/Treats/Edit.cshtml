@@ -22,4 +22,4 @@
   <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Back to Treat details", "Details", new {id = @Model.TreatId})</p>
+<p>@Html.ActionLink("Back to " + $"{@Model.Name}" + "'s details", "Details", new {id = @Model.TreatId})</p>

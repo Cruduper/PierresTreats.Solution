@@ -3,16 +3,22 @@
 }
 @using PierresTreats.Models
 
-<h1>Details for @Model.Name:</h1>
+<h1>Details for <span class="redtext">@Model.Name</span>:</h1>
 
 <ul>
   <li>Treat ID: @Model.TreatId</li>
   <li>Name: @Model.Name</li>
   <li>Price: @Model.Price</li>
   <li>Description: @Model.Description</li>
+  <li>
+    @Html.ActionLink("EDIT", "Edit", "Treats", new {id = @Model.TreatId}, new { @class = "btn btn-dark btn-sm m-1", @role="button" })  
+  </li>
+  <li>
+    @Html.ActionLink("DELETE", "Delete", "Treats", new {id = @Model.TreatId}, new { @class = "btn btn-dark btn-sm mb-1", @role="button" })  
+  </li>
 </ul>
 
-<h5>List of Flavors for @Model.Name</h5>
+<h5>List of Flavors for <span class="redtext font-weight-bold">@Model.Name</span> </h5>
 <ul>
 
   @if (@Model.JoinEntities.Count == 0)
@@ -23,13 +29,14 @@
   {
     @foreach (FlavorTreat flavT in @Model.JoinEntities)
     {
-      <li>@Html.ActionLink(flavT.Flavor.Name, "Details", "Flavors", new {id = flavT.Flavor.FlavorId})</li>
+      <li>
+        @Html.ActionLink(flavT.Flavor.Name, "Details", "Flavors", new {id = flavT.Flavor.FlavorId})
+      </li>
     }
   }
 </ul>
 
-<div>@Html.ActionLink("Edit " + $"{@Model.Name}", "Edit", new {id = @Model.TreatId})</div>
-<div>@Html.ActionLink("Delete " + $"{@Model.Name}", "Delete", new {id = @Model.TreatId})</div>
-<div>@Html.ActionLink("Add a new Flavor to " + $"{@Model.Name}", "AddFlavor", new {id = @Model.TreatId})</div>
-<div>@Html.ActionLink("Remove a Flavor from " + $"{@Model.Name}", "RemoveFlavor", new {id = @Model.TreatId})</div>
+
+<div>@Html.ActionLink("[[ ADD ]] a new Flavor to " + $"{@Model.Name}", "AddFlavor", new {id = @Model.TreatId})</div>
+<div>@Html.ActionLink("[[ REMOVE ]] a Flavor from " + $"{@Model.Name}", "RemoveFlavor", new {id = @Model.TreatId})</div>
 <div>@Html.ActionLink("Back to Treats list", "Index", "Treats")</div>

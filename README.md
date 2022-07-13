@@ -20,7 +20,7 @@
 
 ## Description
 
-This was the 5th C# weekly project in my programming bootcamp, and is intended to display the skills we learned this week with using Identity for user authorization and authentication as well as many-to-many relationships using EF Core and connecting our C# objects to a MySQL database using the CRUD paradigm. We also resume our use of ASP .NET MVC routing and LINQ querying.    
+This was the fifth C# weekly project in my programming bootcamp, and is intended to display the skills we learned this week with using Identity for user authorization and authentication as well as many-to-many relationships using EF Core and connecting our C# objects to a MySQL database using the CRUD paradigm. We also resume our use of ASP .NET MVC routing and LINQ querying.    
 
 This is a program that will allow Pierre, a bakery owner, to add new treats to his menu, and add new flavors for his treats. Treats can come in many flavors, and different treats can have the same flavor. 
 
